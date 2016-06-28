@@ -8,4 +8,5 @@ interface DatabaseConnectionInterface
 	function commit();
 	function insert(array $data);
 	function findEntity(int $id);
+	function deleteEntity(int $id);
 }

@@ -61,5 +61,25 @@ class UserRepositoryTest extends TestCase
 
 		$this->assertNull($user_repository->findUser($id));
 	}
+
+	public function testingDeleteUserSuccess() {
+		$id = 2;
+		$connection = m::mock(DatabaseConnectionInterface::class);
+       		$connection->shouldReceive('deleteEntity')->with($id)->andReturn(array (1,2,3,4));
+
+		$user_repository = new UserRepository($connection);
+
+		$this->assertNotNull($user_repository->deleteUser($id));	
+	}
+
+	public function testingDeleteUserFailure() {
+		$id = 2;
+		$connection = m::mock(DatabaseConnectionInterface::class);
+		$connection->shouldReceive('deleteEntity')->with($id)->andReturn(null);
+
+		$user_repository = new UserRepository($connection);
+
+		$this->assertNull($user_repository->deleteUser($id));	
+	}
 }
 

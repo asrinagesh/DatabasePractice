@@ -23,6 +23,11 @@ class UserRepository
 	
 	public function findUser(int $id) {
 		$result = $this->connection->findEntity($id);
-		return count($result) != 0 ? $result:null;		
+		return count($result) != 0 ? $result : null;		
+	}
+
+	public function deleteUser(int $id) {
+		$result = $this->connection->deleteEntity($id);
+		return count($result) != 0 ? $result : null;
 	}
 }
